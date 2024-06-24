@@ -90,8 +90,7 @@ router.get("/get-monthly-data", async (req, res) => {
         }
       });
 
-      // Filter out null values (days not covered by the data)
-      return dailyData.filter((data) => data !== null);
+      return dailyData
     }
     extractMonthlyData(month, year)
       .then((monthlyData) => {
