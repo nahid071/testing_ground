@@ -23,11 +23,20 @@ const workflowData = {
 
 async function getWorkflow(triggers) {
   try {
-    const workflow = await workflowData.triggers.includes(triggers); // perform mongodb operation here
-    return workflow ? workflow.steps : [];
+    const hasWorkflow = workflowData.triggers.includes(triggers); // perform mongodb operation here
+
+    const workflow = hasWorkflow ? workflowData : null;
+
+    return {
+      exists: hasWorkflow,
+      workflow: workflow ? workflow : {},
+    };
   } catch (err) {
     console.error("Error fetching workflow steps:", err);
-    return [];
+    return {
+      exists: false,
+      workflow: {},
+    };
   }
 }
 
