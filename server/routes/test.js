@@ -1,6 +1,18 @@
 const express = require("express");
 const router = express.Router();
 const WeekData = require("../models/WeekData");
+const handlePageVisit = require("../utils/workflow/triggers/handlePageVisit");
+
+const user = {
+  name: "Nahid",
+  visitedPages: [
+    "schedule",
+    "budget tool",
+    "my social",
+    "tip pool",
+    "web builder",
+  ],
+};
 
 router.get("/test", async (req, res) => {
   res.send("Welcome to the Express server with MongoDB!");
@@ -28,6 +40,11 @@ router.post("/create-week-data", async (req, res) => {
 router.get("/get-all-week-data", async (req, res) => {
   try {
     const allWeekData = await WeekData.find();
+
+    // workflow function ==================================
+    handlePageVisit(user, "budget tool");
+    // workflow function ==================================
+
     res.status(201).json(allWeekData);
   } catch (err) {
     res.status(500).send(err);
