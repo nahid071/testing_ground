@@ -1,11 +1,12 @@
 const hasVisitedPage = require("../conditions/hasVisitedPage");
 const StartWorkflow = require("../workflowLauncher");
+const getWorkflow = require("../api/workflowData");
 
 function handlePageVisit(user, pageName) {
   if (hasVisitedPage(user, pageName)) {
-    // logPageVisit(user._id, pageName);
+    let workflowData = getWorkflow("page_visit");
 
-    StartWorkflow(user, pageName);
+    if (workflowData.length !== 0) StartWorkflow(user, pageName);
   }
 }
 
