@@ -8,3 +8,5 @@ docker-compose.yml
 server/.huskyrc
 *.lock
 .idea
+/client/package-lock.json
+/server/package-lock.json
