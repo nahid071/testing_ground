@@ -13,11 +13,11 @@ const validationData = {
   checkerInfo: { userId: "123", pageName: "calendar" },
 };
 
-function handlePageVisit(user, pageName) {
+function handlePageVisit(systemData) {
   getWorkflow("page_visited").then((result) => {
     if (result.exists) {
       if (conditionValidator(validationData)) {
-        StartWorkflow(user, pageName, result.workflow);
+        StartWorkflow(systemData, result.workflow);
       }
     }
   });
