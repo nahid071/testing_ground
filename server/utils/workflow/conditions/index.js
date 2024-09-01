@@ -10,7 +10,7 @@ const conditionFunctions = {
   // hasPurchasedCourse,
 };
 
-function checkValidity(data) {
+function conditionValidator(data) {
   const { conditions, logic, checkerInfo } = data;
 
   const conditionResults = conditions.map((condition) => {
@@ -32,4 +32,4 @@ function checkValidity(data) {
   return false;
 }
 
-module.exports = checkValidity;
+module.exports = conditionValidator;
